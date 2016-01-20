@@ -1,0 +1,22 @@
+{
+    "name": "dolondro/boiler",
+    "description": "Scraping scripts to scrape the data from the boiler",
+    "authors": [
+        {
+            "name": "Doug",
+            "email": "dougnelson@silktide.com"
+        }
+    ],
+    "require": {
+        "symfony/process": "^3.0",
+        "symfony/console": "^3.0",
+        "silktide/syringe": "^1.1",
+        "catfan/medoo": "^1.0",
+        "monolog/monolog": "^1.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dolondro\\Boiler\\": "src"
+        }
+    }
+}

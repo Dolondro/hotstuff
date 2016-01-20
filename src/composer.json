@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/console": "^3.0",
+        "silktide/syringe": "^1.1"
+    }
+}

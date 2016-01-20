@@ -1,0 +1,51 @@
+services:
+  boiler.save.command:
+    class: Dolondro\Boiler\Command\BoilerSaveCommand
+    arguments:
+      - "@postgres.storage"
+      - "@boiler.username"
+      - "@boiler.password"
+    calls:
+      - method: setLogger
+        arguments:
+          - "@monolog.logger"
+
+  postgres.storage:
+    class: Dolondro\Boiler\Storage\PostgresStorage
+    arguments:
+      - "@postgres.meedoo"
+
+  postgres.meedoo:
+    class: \medoo
+    arguments:
+      -
+        database_type: pgsql
+        database_name: "%postgres.dbname%"
+        server: "%postgres.host%"
+        username: "%postgres.username%"
+        password: "%postgres.password%"
+        charset: "utf8"
+
+  monolog.logger:
+    class: \Monolog\Logger
+    arguments:
+      - "%app.name%"
+    calls:
+      - method: pushHandler
+        arguments:
+          - "@monolog.streamhandler"
+
+  monolog.streamhandler:
+    class: \Monolog\Handler\StreamHandler
+    arguments:
+      - "^STDOUT^"
+
+parameters:
+  app.name: "Boiler"
+  postgres.dbname: ""
+  postgres.host: ""
+  postgres.username: ""
+  postgres.password: ""
+
+  boiler.username: ""
+  boiler.password: ""
