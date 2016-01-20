@@ -1,6 +1,6 @@
 <?php
 
-namespace Dolondro\Boiler\Process;
+namespace Dolondro\HotStuff\Process;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;

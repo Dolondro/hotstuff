@@ -1,6 +1,6 @@
 services:
   boiler.save.command:
-    class: Dolondro\Boiler\Command\BoilerSaveCommand
+    class: Dolondro\HotStuff\Command\BoilerSaveCommand
     arguments:
       - "@postgres.storage"
       - "@boiler.username"
@@ -11,7 +11,7 @@ services:
           - "@monolog.logger"
 
   postgres.storage:
-    class: Dolondro\Boiler\Storage\PostgresStorage
+    class: Dolondro\HotStuff\Storage\PostgresStorage
     arguments:
       - "@postgres.meedoo"
 

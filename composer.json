@@ -1,5 +1,5 @@
 {
-    "name": "dolondro/boiler",
+    "name": "dolondro/hotstuff",
     "description": "Scraping scripts to scrape the data from the boiler",
     "authors": [
         {
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dolondro\\Boiler\\": "src"
+            "Dolondro\\HotStuff\\": "src"
         }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dolondro\Boiler\Command;
+namespace Dolondro\HotStuff\Command;
 
-use Dolondro\Boiler\Process\ScraperProcess;
-use Dolondro\Boiler\Storage\StorageInterface;
+use Dolondro\HotStuff\Process\ScraperProcess;
+use Dolondro\HotStuff\Storage\StorageInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Command\Command;
@@ -43,22 +43,22 @@ class BoilerSaveCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->logger->addAlert("SOMETHING HAS GONE WRONG");
-        die();
-        //$process = new Process("casperjs scraper.js --user={$this->boilerUsername} --password={$this->boilerPassword}", __DIR__."/../casper");
-        $process = new Process("ls");
+        $process = new Process("casperjs scraper.js --user={$this->boilerUsername} --password={$this->boilerPassword}", __DIR__."/../casper");
         $process->setTimeout(120);
         $process->run();
 
         $data = $process->getOutput();
         $exploded = explode("=== RESULTS ===", $data);
-        $results = json_decode($exploded[1], true);
-        $success = !!$process->isSuccessful();
+        if (count($exploded) < 2) {
 
-        if ($success) {
-            $this->storageInterface->insert(new \DateTime(), true, $results["data"]);
         } else {
-            $this->storageInterface->insert(new \DateTime(), false, [], $results["error"]);
+            $results = json_decode($exploded[1], true);
+            if ($process->isSuccessful()) {
+                $this->storageInterface->insert(new \DateTime(), true, $results["data"]);
+            } else {
+                $this->storageInterface->insert(new \DateTime(), false, [], $results["error"]);
+            }
         }
+
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dolondro\Boiler\Storage;
+namespace Dolondro\HotStuff\Storage;
 
 interface StorageInterface
 {
