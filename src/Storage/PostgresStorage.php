@@ -20,4 +20,11 @@ class PostgresStorage implements StorageInterface
             "error" => $error
         ]);
     }
+
+    public function between($startdate, $enddate)
+    {
+        return $this->medoo->select("boiler", "*", [
+            "datetime[<>]" => [$startdate, $enddate]
+        ]);
+    }
 }
