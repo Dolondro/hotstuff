@@ -10,6 +10,15 @@ services:
         arguments:
           - "@monolog.logger"
 
+  boiler.import.legacy.command:
+    class: Dolondro\HotStuff\Command\ImportLegacyJsonCommand
+    arguments:
+      - "@postgres.storage"
+    calls:
+      - method: setLogger
+        arguments:
+          - "@monolog.logger"
+
   postgres.storage:
     class: Dolondro\HotStuff\Storage\PostgresStorage
     arguments:
