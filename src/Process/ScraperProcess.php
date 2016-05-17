@@ -10,7 +10,7 @@ class ScraperProcess
     public function run($username, $password)
     {
         $script = realpath(__DIR__."/../casper/scraper.js");
-        $process = new Process("casperjs {$script} --user='{$username}' --password='{$password}'");
+        $process = new Process("casperjs {$script} --user='{$username}' --password='{$password}'  --ignore-ssl-errors=true --ssl-protocol=any");
         $process->run();
 
         if (!$process->isSuccessful()) {
