@@ -43,7 +43,7 @@ class BoilerSaveCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = new Process("casperjs scraper.js --user={$this->boilerUsername} --password={$this->boilerPassword}", __DIR__."/../casper");
+        $process = new Process("casperjs scraper.js --user={$this->boilerUsername} --password={$this->boilerPassword} --ignore-ssl-errors=true --ssl-protocol=any", __DIR__."/../Casper");
         $process->setTimeout(120);
         $process->run();
 

@@ -1,4 +1,10 @@
-var casper = require('casper').create();
+var casper = require('casper').create(
+    {
+        verbose: true,
+        logLevel: "debug",
+        "sslProtocol": "any"
+    }
+);
 
 var debug = {
     log: function (value) {
@@ -24,8 +30,11 @@ var password = casper.cli.get("password");
 debug.log("=== DEBUGGING ===");
 debug.log("Trying to load URL");
 casper.start('https://vitodata100.viessmann.com/VD100/VD100/Login/Login.aspx', function () {
-    // Load up the page!
+//casper.start('http://cheesecake.com/', function() {
+    // Load up the page!)
     debug.log("Successfully loaded the page: " + this.getTitle());
+    console.log(this.getHTML());
+
     this.sendKeys('.RTBUser', user);
     this.sendKeys('.RTBPassword', password);
     debug.log("Adding Login Details");
